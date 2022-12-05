@@ -1,40 +1,39 @@
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { sheets } from "googleapis/build/src/apis/sheets";
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
+import styles from '../styles/Home.module.css'
 export default function Home() {
   const SPREADSHEET_ID = process.env.REACT_APP_SPREADSHEET_ID;
 const SHEET_ID = process.env.REACT_APP_SHEET_ID;
 const CLIENT_EMAIL = process.env.REACT_APP_GOOGLE_CLIENT_EMAIL;
 const PRIVATE_KEY = process.env.REACT_APP_GOOGLE_SERVICE_PRIVATE_KEY;
 const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
-const [data, setData] = useState([])
 const [url, setUrl] = useState('')
-const [cell_data, setCell_data] = useState('')
-
-const createSpreadsheet = async () => {
+const [rowData, setRowData] = useState<string[]>([])
+const [num, setNum] = useState(2)
+useEffect(() => {document.addEventListener('keypress', (e) => {console.log(e.key)})}, [])
+const getUser = async (id:number) => {
   try{
     await doc.useServiceAccountAuth({
       client_email: CLIENT_EMAIL,
       private_key: PRIVATE_KEY.replace(/\\n/g, '\n'),
     }
-  )
-  await doc.addSheet({title:'oi'}) 
-  await doc.loadInfo()
-  const firstSheet = doc.sheetsById[SHEET_ID]
-  const rows = await firstSheet.getRows()
-  console.log(firstSheet.headerValues)
-  const newSheet = doc.sheetsById[Object.values(doc.sheetsByIndex).slice(-1)[0].sheetId]
-  await newSheet.setHeaderRow(firstSheet.headerValues)
-  newSheet.addRows(rows)
-  setUrl(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/edit#gid=${Object.values(doc.sheetsByIndex).slice(-1)[0].sheetId}`)
-}
-  catch (e) {
-    console.error('Error: ', e);
+    )
+
+    await doc.loadInfo()
+    const sheet = doc.sheetsById[SHEET_ID]
+    const rows =await sheet.getRows()
+    const row = rows[id - 2]
+    
+    setRowData(rowData => [...rowData, row]);
   }
-  
+
+    catch (e) {
+      console.error('Error: ', e);
+    }
 }
 
-const validateUser = async () => {
+const pJotinha = async (classification:string) => {
   try{
     await doc.useServiceAccountAuth({
       client_email: CLIENT_EMAIL,
@@ -42,56 +41,39 @@ const validateUser = async () => {
     }
     )
     await doc.loadInfo()
-    const sheet = doc.sheetsById['28513']
+    const sheet = doc.sheetsById[SHEET_ID]
     await sheet.loadCells()
-    for (var nL = 2; ; nL++){
-      nL.toString()
-    }
-    const rCell = 'B'+nL
+    const rCell = `E${num}`
     const cell = await sheet.getCellByA1(rCell)
-    cell.value = 'validado'
+    cell.value = classification
     await sheet.saveUpdatedCells()
-    
-    console.log(cell)
+    setNum(num + 1)
+    getUser(num + 1)
   }
 
-    catch (e) {
-      console.error('Error: ', e);
-    }
-
-}
-
-const appendSpreadsheet = async () => {
-
-  try {
-    await doc.useServiceAccountAuth({
-      client_email: CLIENT_EMAIL,
-      private_key: PRIVATE_KEY.replace(/\\n/g, '\n'),
-    });
-    // loads document properties and worksheets
-    await doc.loadInfo();
-    console.log(doc)
-    const sheet = doc.sheetsById[SHEET_ID];
-    const rows = await sheet.getRows()
-    const theusSheet = sheet.addRows[SHEET_ID, {Nome: 'theus', Idade: '16'}]
-    console.log(rows[0])
-    setData(rows)
-  } catch (e) {
+  catch (e) {
     console.error('Error: ', e);
   }
-};
+}
+
 
   return (
     <div>
-      {/* <button onClick={appendSpreadsheet}>Get Rows</button>
-      {data.map((item)=>(
-        <p>{item['Nome']} : {item['Idade']}: {item['Status']}</p>
-      ))} */}
+      <h1 className={styles.title}>eice</h1>
+      {/* <button onClick={()=>{
+        getUser(num)
+      }}>Get USer</button> */}
+      {rowData.map((item,index)=>(
+        <p key = {index}>{item['profile_name']}, {item['user_name']}, <img src={item['profile_image_url']} width='10%'></img></p>
+      ))}
 
-      <button onClick={createSpreadsheet}>Criar Planilha</button>
-      <a href={url}>{url}</a>
-
-      <button onClick={validateUser}>clica aqui</button>
+      <button onClick={()=>{
+        pJotinha('0')
+      }}>Não é pjotinha</button>
+      
+      <button onClick={()=>{
+        pJotinha('1')
+      }}>É pjotinha</button>
     </div>
   )
 }
