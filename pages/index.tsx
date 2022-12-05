@@ -10,8 +10,27 @@ const PRIVATE_KEY = process.env.REACT_APP_GOOGLE_SERVICE_PRIVATE_KEY;
 const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
 const [url, setUrl] = useState('')
 const [rowData, setRowData] = useState<string[]>([])
-const [num, setNum] = useState(2)
-useEffect(() => {document.addEventListener('keypress', (e) => {console.log(e.key)})}, [])
+var c = 0
+const [num, setNum] = useState(0)
+useEffect(() => {
+  c ++
+  setNum(localStorage.getItem('id') !== null ? JSON.parse(localStorage.getItem('id')) : 0)
+  if(c === 1){
+    getUser(localStorage.getItem('id') !== null ? JSON.parse(localStorage.getItem('id')) : 0)
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowRight'){
+      pJotinha('1')
+    }
+  else if(e.key === 'ArrowLeft'){pJotinha('0')}})
+  }
+}, [])
+useEffect(()=>{
+  if(num !== 0){
+    localStorage.setItem('id', num.toString())
+  }
+  
+}, [num])
+
 const getUser = async (id:number) => {
   try{
     await doc.useServiceAccountAuth({
@@ -24,8 +43,8 @@ const getUser = async (id:number) => {
     const sheet = doc.sheetsById[SHEET_ID]
     const rows =await sheet.getRows()
     const row = rows[id - 2]
-    
-    setRowData(rowData => [...rowData, row]);
+    console.log(id)
+    setRowData(row);
   }
 
     catch (e) {
@@ -34,6 +53,7 @@ const getUser = async (id:number) => {
 }
 
 const pJotinha = async (classification:string) => {
+  let stg = localStorage.getItem('id') !== null ? JSON.parse(localStorage.getItem('id')) : 0
   try{
     await doc.useServiceAccountAuth({
       client_email: CLIENT_EMAIL,
@@ -43,12 +63,13 @@ const pJotinha = async (classification:string) => {
     await doc.loadInfo()
     const sheet = doc.sheetsById[SHEET_ID]
     await sheet.loadCells()
-    const rCell = `E${num}`
+    const rCell = `E${stg}`
     const cell = await sheet.getCellByA1(rCell)
     cell.value = classification
     await sheet.saveUpdatedCells()
-    setNum(num + 1)
-    getUser(num + 1)
+    setNum(stg + 1)
+    getUser(stg + 1)
+    console.log(url)
   }
 
   catch (e) {
@@ -60,12 +81,8 @@ const pJotinha = async (classification:string) => {
   return (
     <div>
       <h1 className={styles.title}>eice</h1>
-      {/* <button onClick={()=>{
-        getUser(num)
-      }}>Get USer</button> */}
-      {rowData.map((item,index)=>(
-        <p key = {index}>{item['profile_name']}, {item['user_name']}, <img src={item['profile_image_url']} width='10%'></img></p>
-      ))}
+      <input id='link' placeholder="Insira o Link da Planilha"></input>
+      {<p >{rowData['profile_name']}, {rowData['user_name']}, <img src={rowData['profile_image_url']} width='10%'></img></p>}
 
       <button onClick={()=>{
         pJotinha('0')
