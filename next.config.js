@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback.fs = false
@@ -11,6 +11,7 @@ module.exports = {
 
     return config
   },
+  
   future: {
     webpack5: true,
   },
