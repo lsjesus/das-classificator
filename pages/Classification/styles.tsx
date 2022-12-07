@@ -55,13 +55,21 @@ export const ClassificationStyle = styled.div({
     gap:'52px'
 },
 
-'& #dica' : {
+'& #dicas' : {
+    marginTop:'30px',
     width: '100vw',
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent:'space-around'
 },
 
 '& .txtDica' : {
-    
+    width: '400px',
+    fontWeight: '400'
+},
+
+'& #txtDir' : {
+    textAlign: 'right'
 }
 })

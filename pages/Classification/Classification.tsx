@@ -2,9 +2,9 @@ import { GoogleSpreadsheet, GoogleSpreadsheetRow, GoogleSpreadsheetWorksheet } f
 import { useState, useEffect } from "react";
 import { ClassificationStyle } from "./styles";
 import Hashtag from '../../assets/Hashtag.svg'
-import AtSign from  '../../assets/AtSign.svg'
+import AtSign from '../../assets/AtSign.svg'
 import UserCard from '../../assets/UserCard.svg'
-import { Loading } from "../../components";
+import { Loading, Finish } from "../../components";
 export default function Home() {
   const stg = localStorage.getItem('url')
   console.log(stg)
@@ -31,25 +31,26 @@ export default function Home() {
     const sheet = doc.sheetsById[SHEET_ID];
     sheet.loadCells()
     const qrows = await sheet.getRows();
+    console.log(qrows.length)
     setSheet(sheet)
     setRows(qrows)
   };
   useEffect(() => {
     getSheet()
   }, []);
-  useEffect(()=>{
-    if (!!rows && counter === 0 && rows.length > 0){
-        setCounter(5)
-        const t = localStorage.getItem("id");
-        getUser(t !== null ? JSON.parse(t) : 0);
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "ArrowRight") {
-            pJotinha("1");
-          } else if (e.key === "ArrowLeft") {
-            pJotinha("0");
-          }
-        });
-        
+  useEffect(() => {
+    if (!!rows && counter === 0 && rows.length > 0) {
+      setCounter(5)
+      const t = localStorage.getItem("id");
+      getUser(t !== null ? JSON.parse(t) : 0);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") {
+          pJotinha("1");
+        } else if (e.key === "ArrowLeft") {
+          pJotinha("0");
+        }
+      });
+
     }
   }, [rows])
   useEffect(() => {
@@ -71,11 +72,11 @@ export default function Home() {
     const t = localStorage.getItem("id");
     let stg = t !== null ? JSON.parse(t) : 0;
     try {
-      if(sheet){
+      if (sheet && stg < rows.length + 2) {
         const rCell = `E${stg}`;
-        const cell =   sheet.getCellByA1(rCell);
+        const cell = sheet.getCellByA1(rCell);
         cell.value = classification;
-         sheet.saveUpdatedCells();
+        sheet.saveUpdatedCells();
         setNum(stg + 1);
         getUser(stg + 1);
       }
@@ -88,64 +89,65 @@ export default function Home() {
     <div>
       {rowData ? (
         <>
-        <ClassificationStyle>
+          <ClassificationStyle>
             <div className="boxFormat">
 
-                <img
+              <img
                 className="profileImg"
-                  alt="Imagem do perfil"
-                  src={rowData["profile_image_url"]}
-                  width="10%">
-                </img>
+                alt="Imagem do perfil"
+                src={rowData["profile_image_url"]}
+                width="10%"
+              />
 
-                <div className="icons">
-                    <img src={Hashtag.src} alt="Hashtag" />
-                    <img src={AtSign.src} alt="Arroba" />
-                    <img src={UserCard.src} alt="Cartão de Usuário" />
+              <div className="icons">
+                <img src={Hashtag.src} alt="Hashtag" />
+                <img src={AtSign.src} alt="Arroba" />
+                <img src={UserCard.src} alt="Cartão de Usuário" />
+              </div>
+
+              <div className="infos">
+                <div className="textInfos">
+                  <p className="infoTitle">
+                    ID do Usuário
+                  </p>
+
+                  <p className="userInfo">
+                    {rowData["consumer_id"]}
+
+                  </p>
                 </div>
 
-                <div className="infos">
-                    <div className="textInfos">
-                        <p className="infoTitle">
-                            ID do Usuário
-                        </p>
+                <div className="textInfos">
+                  <p className="infoTitle">
+                    Nome do Perfil
+                  </p>
 
-                        <p className="userInfo">
-                          {rowData["consumer_id"]}
-                          
-                        </p>
-                    </div>
-
-                    <div className="textInfos">
-                        <p className="infoTitle">
-                            Nome do Perfil
-                        </p>
-
-                        <p className="userInfo">
-                          @{rowData["profile_name"]}
-                        </p>
-                    </div>
-
-                    <div className="textInfos">
-                        <p className="infoTitle">
-                            Nome do Usuário
-                        </p>
-
-                        <p className="userInfo">
-                          {rowData["user_name"]}
-                        </p>
-                    </div>
+                  <p className="userInfo">
+                    @{rowData["profile_name"]}
+                  </p>
                 </div>
+
+                <div className="textInfos">
+                  <p className="infoTitle">
+                    Nome do Usuário
+                  </p>
+
+                  <p className="userInfo">
+                    {rowData["user_name"]}
+                  </p>
+                </div>
+              </div>
             </div>
-        <div id="dicas">
-          <p id="txtEsq" className="txtDica">&lt; Aperte <strong>SETA PARA ESQUERDA</strong> para classificar como <strong>PESSOA FÍSICA</strong></p>
-          <p id="txtDir" className="txtDica">&gt; Aperte <strong>SETA PARA DIREITA</strong> para classificar como <strong>PESSOA JURÍDICA</strong></p>
-        </div>
-        </ClassificationStyle>
+            <div id="dicas">
+              <p id="txtEsq" className="txtDica">&lt; Aperte <strong>SETA PARA ESQUERDA</strong> para classificar como <strong>PESSOA FÍSICA</strong></p>
+              <p id="txtDir" className="txtDica">Aperte <strong>SETA PARA DIREITA</strong> para classificar como &gt; <strong>PESSOA JURÍDICA</strong></p>
+            </div>
+          </ClassificationStyle>
         </>
-      ) : (
-        <Loading></Loading>
+      ) : Number(localStorage.getItem('id')) <= Number(rows.length) + 2 ? (<Finish />) : (
+        <Loading />
       )}
+
     </div>
   );
 }
