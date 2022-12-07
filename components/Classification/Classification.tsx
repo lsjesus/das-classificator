@@ -4,7 +4,7 @@ import { ClassificationStyle } from "./styles";
 import Hashtag from '../../assets/Hashtag.svg'
 import AtSign from '../../assets/AtSign.svg'
 import UserCard from '../../assets/UserCard.svg'
-import { Loading, Finish } from "../../components";
+import { Loading, Finish } from "..";
 export default function Home() {
   let stg = ''
   if (typeof window !== 'undefined') {

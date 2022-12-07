@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: false,
-  pageExtensions: ['page.tsx'],
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback.fs = false
