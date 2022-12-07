@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const FinishDiv = styled.div({
     width: '100vw',
-    height: '100vh',
+    height: '85vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
