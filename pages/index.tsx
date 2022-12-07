@@ -1,18 +1,6 @@
-import Intro from './Intro/Intro.page'
-import Classification from "./Classification/Classification.page"
-import { useEffect, useState } from 'react';
-export default function Index() {
-  const [url, setUrl] = useState('')
-  useEffect(() => {
-    const stg = localStorage.getItem('url')
-    if (stg) {
-      setUrl(stg)
-    }
-  }, []
-  )
+import Main from "./Main/Main.page"
+export default function Home() {
   return (
-    <>
-      {url ? <Classification /> : <Intro />}
-    </>
+    <Main/>
   )
 }
