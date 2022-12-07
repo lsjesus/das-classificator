@@ -4,8 +4,8 @@ export const InicialInput = styled.div({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '100vw',
-  height: '100vh',
+  width: '85vw',
+  height: '85vh',
   margin: '0 auto',
 
   '& .boxFormat' : {

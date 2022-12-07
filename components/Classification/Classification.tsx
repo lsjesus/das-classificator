@@ -4,7 +4,7 @@ import { ClassificationStyle } from "./styles";
 import Hashtag from '../../assets/Hashtag.svg'
 import AtSign from '../../assets/AtSign.svg'
 import UserCard from '../../assets/UserCard.svg'
-import { Loading, Finish } from "..";
+import { Loading, Finish, Fail, Header } from "../../components";
 export default function Home() {
   let stg = ''
   if (typeof window !== 'undefined') {
@@ -22,6 +22,7 @@ export default function Home() {
     ? process.env.REACT_APP_GOOGLE_SERVICE_PRIVATE_KEY
     : "";
   const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
+  const [error, setError] = useState(Boolean);
   const [rows, setRows] = useState<GoogleSpreadsheetRow[]>([]);
   const [sheet, setSheet] = useState<GoogleSpreadsheetWorksheet>();
   const [rowData, setRowData] = useState<GoogleSpreadsheetRow>();
@@ -41,8 +42,10 @@ export default function Home() {
     setRows(qrows)
   };
   useEffect(() => {
-    getSheet()
-  }, []);
+    getSheet().catch((erro) => {
+      setError(true)
+    });
+  }, [])
   useEffect(() => {
     if (!!rows && counter === 0 && rows.length > 0) {
       setCounter(5)
@@ -90,10 +93,13 @@ export default function Home() {
     }
   };
 
+
+
   return (
-    <div>
-      {rowData ? (
+    <div> {error === true ? ( (<Fail/>) ) :
+      rowData ? (
         <>
+        <Header></Header>
           <ClassificationStyle>
             <div className="boxFormat">
 
@@ -152,7 +158,6 @@ export default function Home() {
       ) : (rows.length && Number(localStorage.getItem('id')) <= Number(rows.length) + 2 )? (<Finish />) : (
         <Loading />
       )}
-
     </div>
   );
 }

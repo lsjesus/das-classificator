@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const FinishDiv = styled.div({
+export const ErrorDiv = styled.div({
     width: '100vw',
     height: '85vh',
     display: 'flex',
