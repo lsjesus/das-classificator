@@ -1,5 +1,5 @@
-import Intro from './Intro/Intro'
-import Classification from "./Classification/Classification"
+import Intro from './Intro/Intro.page'
+import Classification from "./Classification/Classification.page"
 import { useEffect, useState } from 'react';
 export default function Index() {
   const [url, setUrl] = useState('')
