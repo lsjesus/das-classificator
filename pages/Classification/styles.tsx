@@ -6,7 +6,7 @@ export const ClassificationStyle = styled.div({
     justifyContent: 'center',
     flexDirection:'column',
     width: '100vw',
-    height: '100vh',
+    height: '85vh',
     margin: '0 auto',
 
 '& .boxFormat' : {
