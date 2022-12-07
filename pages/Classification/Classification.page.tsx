@@ -6,7 +6,13 @@ import AtSign from '../../assets/AtSign.svg'
 import UserCard from '../../assets/UserCard.svg'
 import { Loading, Finish, Fail, Header } from "../../components";
 export default function Home() {
-  const stg = localStorage.getItem('url')
+  let stg = ''
+  if (typeof window !== 'undefined') {
+    const s = localStorage.getItem('url')
+    if(s !== null){
+      stg = s
+    }
+  }
   const SPREADSHEET_ID = stg?.split('/')[5]
   const SHEET_ID = stg !== undefined && stg !== null ? stg.split('=')[1] : ''
   const CLIENT_EMAIL = process.env.REACT_APP_GOOGLE_CLIENT_EMAIL
