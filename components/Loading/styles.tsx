@@ -4,7 +4,8 @@ export const LoadingDiv = styled.div({
     display: 'flex',
     fontFamily: 'Inter, sans-serif',
     justifyContent: 'center',
-    marginTop: '240px',
+    alignItems: 'center',
+    height: '100vh',
     '& .lds-roller' : {
         display: 'inline-block',
         position: 'relative',

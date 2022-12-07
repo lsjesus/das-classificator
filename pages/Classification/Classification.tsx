@@ -6,10 +6,10 @@ import AtSign from  '../../assets/AtSign.svg'
 import UserCard from '../../assets/UserCard.svg'
 import { Loading } from "../../components";
 export default function Home() {
-  const SPREADSHEET_ID = localStorage.getItem('url')?.split('/')[5]
-  const SHEET_ID = localStorage.getItem('url')?.split('=')[1]
-    ? process.env.REACT_APP_SHEET_ID
-    : "";
+  const stg = localStorage.getItem('url')
+  console.log(stg)
+  const SPREADSHEET_ID = stg?.split('/')[5]
+  const SHEET_ID = stg !== undefined && stg !== null ? stg.split('=')[1] : ''
   const CLIENT_EMAIL = process.env.REACT_APP_GOOGLE_CLIENT_EMAIL
     ? process.env.REACT_APP_GOOGLE_CLIENT_EMAIL
     : "";
@@ -87,20 +87,21 @@ export default function Home() {
   return (
     <div>
       {rowData ? (
+        <>
         <ClassificationStyle>
             <div className="boxFormat">
 
                 <img
                 className="profileImg"
-                  alt="imagem"
+                  alt="Imagem do perfil"
                   src={rowData["profile_image_url"]}
                   width="10%">
                 </img>
 
                 <div className="icons">
-                    <img src={Hashtag.src} alt="" />
-                    <img src={AtSign.src} alt="" />
-                    <img src={UserCard.src} alt="" />
+                    <img src={Hashtag.src} alt="Hashtag" />
+                    <img src={AtSign.src} alt="Arroba" />
+                    <img src={UserCard.src} alt="Cartão de Usuário" />
                 </div>
 
                 <div className="infos">
@@ -136,7 +137,12 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+        <div id="dicas">
+          <p id="txtEsq" className="txtDica">&lt; Aperte <strong>SETA PARA ESQUERDA</strong> para classificar como <strong>PESSOA FÍSICA</strong></p>
+          <p id="txtDir" className="txtDica">&gt; Aperte <strong>SETA PARA DIREITA</strong> para classificar como <strong>PESSOA JURÍDICA</strong></p>
+        </div>
         </ClassificationStyle>
+        </>
       ) : (
         <Loading></Loading>
       )}

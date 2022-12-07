@@ -4,6 +4,7 @@ export const ClassificationStyle = styled.div({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection:'column',
     width: '100vw',
     height: '100vh',
     margin: '0 auto',
@@ -52,5 +53,15 @@ export const ClassificationStyle = styled.div({
     display: 'flex',
     flexDirection: 'column',
     gap:'52px'
+},
+
+'& #dica' : {
+    width: '100vw',
+    display: 'flex',
+    flexDirection: 'row'
+},
+
+'& .txtDica' : {
+    
 }
 })
