@@ -144,7 +144,7 @@ export default function Home() {
             </div>
           </ClassificationStyle>
         </>
-      ) : Number(localStorage.getItem('id')) <= Number(rows.length) + 2 ? (<Finish />) : (
+      ) : (rows.length && Number(localStorage.getItem('id')) <= Number(rows.length) + 2 )? (<Finish />) : (
         <Loading />
       )}
 
