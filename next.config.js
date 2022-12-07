@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: false,
+  basePath: "/nextjs-pages",
+  assetPrefix: "/nextjs-pages",
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback.fs = false
