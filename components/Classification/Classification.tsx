@@ -5,6 +5,7 @@ import Hashtag from '../../assets/Hashtag.svg'
 import AtSign from '../../assets/AtSign.svg'
 import UserCard from '../../assets/UserCard.svg'
 import { Loading, Finish, Fail, Header } from "../../components";
+import{ buttonPf, buttonPj} from "../../components/SelectButton/SelectButton"
 export default function Home() {
   let stg = ''
   if (typeof window !== 'undefined') {
@@ -52,9 +53,9 @@ export default function Home() {
       const t = localStorage.getItem("id");
       getUser(t !== null ? JSON.parse(t) : 0);
       document.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") {
+        if (e.key === buttonPj) {
           pJotinha("1");
-        } else if (e.key === "ArrowLeft") {
+        } else if (e.key === buttonPf) {
           pJotinha("0");
         }
       });
@@ -150,8 +151,8 @@ export default function Home() {
               </div>
             </div>
             <div id="dicas">
-              <p id="txtEsq" className="txtDica">&lt; Aperte <strong>SETA PARA ESQUERDA</strong> para classificar como <strong>PESSOA FÍSICA</strong></p>
-              <p id="txtDir" className="txtDica">Aperte <strong>SETA PARA DIREITA</strong> para classificar como &gt; <strong>PESSOA JURÍDICA</strong></p>
+              <p id="txtEsq" className="txtDica">&lt; Aperte <strong>${buttonPf}</strong> para classificar como <strong>PESSOA FÍSICA</strong></p>
+              <p id="txtDir" className="txtDica">Aperte <strong>${buttonPj}</strong> para classificar como &gt; <strong>PESSOA JURÍDICA</strong></p>
             </div>
           </ClassificationStyle>
         </>

@@ -2,16 +2,16 @@ import { useState, useEffect, useRef } from "react";
 import { SelectDiv } from './style';
 import { Header } from "../../components";
 
-
-
+export var buttonPf: string|undefined|number
+export var buttonPj: string|undefined|number
 
 export function Select(){
     const inputReference = useRef<HTMLInputElement>(null)
 
     const getButton = async () => {
         if(inputReference.current)
-            var buttonPf = inputReference.current.value[0]
-            var buttonPj = inputReference.current?.value[1]
+            buttonPf = inputReference.current.value[0]
+            buttonPj = inputReference.current?.value[1]
     }
 
     return(
