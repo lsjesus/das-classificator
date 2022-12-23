@@ -5,7 +5,6 @@ import Hashtag from '../../assets/Hashtag.svg'
 import AtSign from '../../assets/AtSign.svg'
 import UserCard from '../../assets/UserCard.svg'
 import { Loading, Finish, Fail, Header } from "../../components";
-import{ buttonPf, buttonPj} from "../../components/SelectButton/SelectButton"
 import { loadComponents } from "next/dist/server/load-components";
 export default function Home() {
   let stg = ''

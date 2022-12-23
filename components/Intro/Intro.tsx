@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { InicialInput } from './styles';
 import { Header } from "../../components";
-import { Select } from "../../components/SelectButton/SelectButton";
+import { Select } from "../../components";
 import { Start } from './styles';
 
 export default function Intro() {
@@ -24,9 +24,8 @@ export default function Intro() {
     return (
         <>  
             <Header></Header>
-            <Start>
-            <div className="start">
             <form action="./" onSubmit={(e) => { getLink() }}>
+            {/* <Start> */}
                 <InicialInput>
                     <div className="boxFormat">
                         <p className='titleFormat'>Acessar Dados</p>
@@ -36,10 +35,9 @@ export default function Intro() {
                         <button className="buttonFormat" onClick={(e) => {e.preventDefault(), showSelect()}} ref={submitReference}>Alterar botões</button>
                     </div>
                 </InicialInput>
+                {/* </Start> */}
             </form>
-            <Select/>
-            </div>
-            </Start>
+            <Select></Select>
         </>
         )
 }

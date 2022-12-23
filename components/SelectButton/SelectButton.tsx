@@ -41,7 +41,7 @@ export function Select(){
         <SelectDiv>
             <div className="boxFormat">
                 <p className="titleFormat"></p>
-                <label className="subTitleFormat" htmlFor="button">Insira a seguir o botões para avaliação:</label>
+                <label className="subTitleFormat" htmlFor="button">Insira a seguir os botões para avaliação:</label>
                 <input id="buttonPF" className="inputFormat" type="text" ref={inputReference1} placeholder="Botão PF (Padrão: Seta Esquerda)"/>
                 <input id="buttonPJ" className="inputFormat" type="text" ref={inputReference2} placeholder="Botão PJ (Padrão: Seta Direita"/>
                 <button type="submit" className="buttonFormat" ref={submitReference}>Confirmar</button>

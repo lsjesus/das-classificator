@@ -7,6 +7,7 @@ export const SelectDiv = styled.div({
     width: '85vw',
     height: '85vh',
     margin: '0 auto',
+    paddingRight: '30px',
   
     '& .boxFormat' : {
       display: 'flex',
