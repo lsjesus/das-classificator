@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 
 export const InicialInput = styled.div({
   display: 'flex',
+  flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
   width: '85vw',
@@ -61,3 +62,11 @@ export const InicialInput = styled.div({
   },
   }
 });
+
+export const Start = styled.div(
+  {
+    display: 'flex',
+    flexDirection: 'row'
+  }
+
+)

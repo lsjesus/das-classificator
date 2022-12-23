@@ -6,6 +6,7 @@ import AtSign from '../../assets/AtSign.svg'
 import UserCard from '../../assets/UserCard.svg'
 import { Loading, Finish, Fail, Header } from "../../components";
 import{ buttonPf, buttonPj} from "../../components/SelectButton/SelectButton"
+import { loadComponents } from "next/dist/server/load-components";
 export default function Home() {
   let stg = ''
   if (typeof window !== 'undefined') {
@@ -53,9 +54,9 @@ export default function Home() {
       const t = localStorage.getItem("id");
       getUser(t !== null ? JSON.parse(t) : 0);
       document.addEventListener("keydown", (e) => {
-        if (e.key === buttonPj) {
+        if (e.key === localStorage.getItem('buttonPj')) {
           pJotinha("1");
-        } else if (e.key === buttonPf) {
+        } else if (e.key === localStorage.getItem('buttonPf')) {
           pJotinha("0");
         }
       });
@@ -151,8 +152,8 @@ export default function Home() {
               </div>
             </div>
             <div id="dicas">
-              <p id="txtEsq" className="txtDica">&lt; Aperte <strong>${buttonPf}</strong> para classificar como <strong>PESSOA FÍSICA</strong></p>
-              <p id="txtDir" className="txtDica">Aperte <strong>${buttonPj}</strong> para classificar como &gt; <strong>PESSOA JURÍDICA</strong></p>
+              <p id="txtEsq" className="txtDica">&lt; Aperte <strong>${localStorage.getItem('buttonPf')}</strong> para classificar como <strong>PESSOA FÍSICA</strong></p>
+              <p id="txtDir" className="txtDica">Aperte <strong>${localStorage.getItem('buttonPj')}</strong> para classificar como &gt; <strong>PESSOA JURÍDICA</strong></p>
             </div>
           </ClassificationStyle>
         </>

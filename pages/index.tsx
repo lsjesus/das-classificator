@@ -18,34 +18,3 @@ export default function Home() {
   )
 }
 
-export function Select2(){
-  const [click, setClick] = useState('')
-  useEffect(() => {
-    const Select = sessionStorage.getItem('Select')
-    if (Select) {
-      setClick(Select)
-    }
-  }, []
-  )
-  return(
-    <>
-    {click ? <Select /> : <Intro />}
-    </>
-  )
-}
-
-export function Intro2(){
-  const [click, setClick] = useState('')
-  useEffect(() => {
-    const backI = sessionStorage.getItem('backI')
-    if (backI) {
-      setClick(backI)
-    }
-  }, []
-  )
-  return(
-    <>
-    {click ? <Intro /> : <Select />}
-    </>
-  )
-}
