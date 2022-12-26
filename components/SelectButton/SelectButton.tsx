@@ -13,9 +13,9 @@ export function Select(){
     const getButton = async () => {
         if(inputReference1.current?.value != undefined){
             buttonPf = inputReference1.current.value
-            if(buttonPf != ''){
-                localStorage.setItem('buttonPf', buttonPf)
-                localStorage.setItem('buttonPfName', buttonPf)
+            if(buttonPf == 'Shift' || buttonPf == 'Enter' || buttonPf == 'Backspace' || buttonPf.length == 1){
+                    localStorage.setItem('buttonPf', buttonPf)
+                    localStorage.setItem('buttonPfName', buttonPf)
             }
             else{
                 buttonPf = 'ArrowLeft'
@@ -27,10 +27,10 @@ export function Select(){
 
         if(inputReference2.current){
             buttonPj = inputReference2.current.value
-            if(buttonPj != ''){
+            if(buttonPj == 'Shift' || buttonPj == 'Enter' || buttonPj == 'Backspace' || buttonPj.length == 1){
                 localStorage.setItem('buttonPj', buttonPj)
                 localStorage.setItem('buttonPjName', buttonPj)
-            }
+        }
             else{
                 buttonPj = 'ArrowRight'
                 localStorage.setItem('buttonPj', buttonPj)
