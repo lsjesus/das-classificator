@@ -34,20 +34,20 @@ export default function Intro() {
     return (
         <>  
             <Header></Header>
-            <form action="./" onSubmit={(e) => { getLink() }}>
-            {/* <Start> */}
-                <InicialInput>
-                    <div className="boxFormat">
-                        <p className='titleFormat'>Acessar Dados</p>
-                        <label className='subTitleFormat' htmlFor='sheetURL'>Endereço da Fonte de Dados</label>
-                        <input id='sheetURL' className="inputFormat" type='text' ref={inputReference} placeholder="Insira aqui o link da planilha"></input>
-                        <button type="submit" className="buttonFormat">Confirmar</button>
-                        <button className="buttonFormat" onClick={(e) => {e.preventDefault(), showSelect()}} ref={submitReference}>Alterar botões</button>
-                    </div>
-                </InicialInput>
-                {/* </Start> */}
-            </form>
-            <Select></Select>
+            <Start>
+                <form action="./" onSubmit={(e) => { getLink() }}>
+                    <InicialInput>
+                        <div className="boxFormat">
+                            <p className='titleFormat'>Acessar Dados</p>
+                            <label className='subTitleFormat' htmlFor='sheetURL'>Endereço da Fonte de Dados</label>
+                            <input id='sheetURL' className="inputFormat" type='text' ref={inputReference} placeholder="Insira aqui o link da planilha"></input>
+                            <button type="submit" className="buttonFormat">Confirmar</button>
+                            <button className="buttonFormat" onClick={(e) => {e.preventDefault(), showSelect()}} ref={submitReference}>Alterar botões</button>
+                        </div>
+                    </InicialInput>
+                </form>
+                <Select></Select>
+            </Start>
         </>
         )
 }

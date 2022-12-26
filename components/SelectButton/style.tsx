@@ -4,7 +4,7 @@ export const SelectDiv = styled.div({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '85vw',
+    width: '50vw',
     height: '85vh',
     margin: '0 auto',
     paddingRight: '30px',

@@ -5,7 +5,7 @@ export const InicialInput = styled.div({
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '85vw',
+  width: '50vw',
   height: '85vh',
   margin: '0px auto',
   paddingRight: '0px',
@@ -67,6 +67,7 @@ export const InicialInput = styled.div({
 
 export const Start = styled.div(
   {
+    width: '100vw',
     display: 'flex',
   }
 

@@ -1,6 +1,21 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: false,
+  images: {
+    loader: 'cloudinary',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+        port: ''
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: ''
+      }
+    ],
+  },
   // basePath: "/das-classificator",
   // assetPrefix: "/das-classificator",
   webpack: (config, { isServer }) => {

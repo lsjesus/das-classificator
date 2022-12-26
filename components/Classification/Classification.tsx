@@ -5,8 +5,8 @@ import Hashtag from '../../assets/Hashtag.svg'
 import AtSign from '../../assets/AtSign.svg'
 import UserCard from '../../assets/UserCard.svg'
 import { Loading, Finish, Fail, Header } from "../../components";
+import Image from "next/image";
 import { loadComponents } from "next/dist/server/load-components";
-import { Select } from "../../components";
 export default function Home() {
   let stg = ''
   if (typeof window !== 'undefined') {
@@ -79,6 +79,7 @@ export default function Home() {
   };
 
   const pJotinha = async (classification: string) => {
+    const start = Date.now()
     const t = localStorage.getItem("id");
     let stg = t !== null ? JSON.parse(t) : 0;
     try {
@@ -105,12 +106,21 @@ export default function Home() {
           <ClassificationStyle>
             <div className="boxFormat">
 
-              <img
+              <Image
+              src={rowData["profile_image_url"]}
+              alt='imagem do perfil'
+              width={300}
+              height={300}
+              quality={50}
+              priority
+              />
+              
+              {/* <img
                 className="profileImg"
                 alt="Imagem do perfil"
                 src={rowData["profile_image_url"]}
                 width="10%"
-              />
+              /> */}
 
               <div className="icons">
                 <img src={Hashtag.src} alt="Hashtag" />
@@ -152,7 +162,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
+            
             <div id="dicas">
               <p id="txtEsq" className="txtDica">&lt; Aperte <strong>${localStorage.getItem('buttonPfName')}</strong> para classificar como <strong>PESSOA FÍSICA</strong></p>
               <p id="txtDir" className="txtDica">Aperte <strong>${localStorage.getItem('buttonPjName')}</strong> para classificar como &gt; <strong>PESSOA JURÍDICA</strong></p>
