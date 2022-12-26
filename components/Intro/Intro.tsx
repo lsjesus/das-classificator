@@ -13,6 +13,16 @@ export default function Intro() {
         if (inputReference.current)
             localStorage.setItem('url', inputReference.current.value)
         localStorage.setItem('id', '2')
+
+        if(!localStorage.getItem('buttonPf')){
+            localStorage.setItem('buttonPf', 'ArrowLeft')
+            localStorage.setItem('buttonPfName', 'Seta Esquerda')
+        }
+
+        if(!localStorage.getItem('buttonPj')){
+            localStorage.setItem('buttonPj', 'ArrowRight')
+            localStorage.setItem('buttonPjName', 'Seta Direita')
+        }
     }
     const showSelect = async () => {
        const a = document.getElementById('selectButton')

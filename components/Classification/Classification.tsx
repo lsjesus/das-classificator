@@ -6,6 +6,7 @@ import AtSign from '../../assets/AtSign.svg'
 import UserCard from '../../assets/UserCard.svg'
 import { Loading, Finish, Fail, Header } from "../../components";
 import { loadComponents } from "next/dist/server/load-components";
+import { Select } from "../../components";
 export default function Home() {
   let stg = ''
   if (typeof window !== 'undefined') {
@@ -147,12 +148,14 @@ export default function Home() {
                   <p className="userInfo">
                     {rowData["user_name"]}
                   </p>
+
                 </div>
               </div>
             </div>
+
             <div id="dicas">
-              <p id="txtEsq" className="txtDica">&lt; Aperte <strong>${localStorage.getItem('buttonPf')}</strong> para classificar como <strong>PESSOA FÍSICA</strong></p>
-              <p id="txtDir" className="txtDica">Aperte <strong>${localStorage.getItem('buttonPj')}</strong> para classificar como &gt; <strong>PESSOA JURÍDICA</strong></p>
+              <p id="txtEsq" className="txtDica">&lt; Aperte <strong>${localStorage.getItem('buttonPfName')}</strong> para classificar como <strong>PESSOA FÍSICA</strong></p>
+              <p id="txtDir" className="txtDica">Aperte <strong>${localStorage.getItem('buttonPjName')}</strong> para classificar como &gt; <strong>PESSOA JURÍDICA</strong></p>
             </div>
           </ClassificationStyle>
         </>
