@@ -42,6 +42,14 @@ export function Select(){
             const a = document.getElementById('selectButton')
             if(a){
                 a.style.display = 'none'
+                a.style.width = '85vw'
+                a.style.paddingRight = '0'
+            }
+            const b = document.getElementById('data')
+            if(b){
+            b.style.paddingLeft = '335px'
+            b.style.alignItems = 'center'
+            b.style.justifyContent = 'center'
             }
     }
 
@@ -53,6 +61,10 @@ export function Select(){
         const a = document.getElementById('selectButton')
         if(a){
             a.style.display = 'none'
+        }
+        const b = document.getElementById('data')
+        if(b){
+        b.style.width = '85vw'
         }
     }
 

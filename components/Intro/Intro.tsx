@@ -26,8 +26,18 @@ export default function Intro() {
     }
     const showSelect = async () => {
        const a = document.getElementById('selectButton')
-       if(a)
-       a.style.display = 'unset'
+       if(a){
+        a.style.display = 'unset'
+        a.style.width = 'unset'
+        a.style.paddingRight = 'unset'
+       }
+
+       const b = document.getElementById('data')
+       if(b){
+        b.style.paddingLeft = 'unset'
+        b.style.alignItems = 'unset'
+        b.style.justifyContent = 'unset'
+       }
     }
 
 
@@ -35,9 +45,9 @@ export default function Intro() {
         <>  
             <Header></Header>
             <Start>
-                <form action="./" onSubmit={(e) => { getLink() }}>
+                <form id="data" action="./" onSubmit={(e) => { getLink() }}>
                     <InicialInput>
-                        <div className="boxFormat">
+                    <div className="boxFormat">
                             <p className='titleFormat'>Acessar Dados</p>
                             <label className='subTitleFormat' htmlFor='sheetURL'>Endereço da Fonte de Dados</label>
                             <input id='sheetURL' className="inputFormat" type='text' ref={inputReference} placeholder="Insira aqui o link da planilha"></input>

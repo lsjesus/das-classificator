@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: false,
   images: {
-    loader: 'cloudinary',
+
     remotePatterns: [
       {
         protocol: 'https',
