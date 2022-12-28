@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: false,
-  basePath: "/das-classificator",
-  assetPrefix: "/das-classificator",
+  //basePath: "/das-classificator",
+  //assetPrefix: "/das-classificator",
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback.fs = false
