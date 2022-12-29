@@ -10,11 +10,6 @@ module.exports = {
         protocol: 'https',
         hostname: 'i.ibb.co',
         port: ''
-      },
-      {
-        protocol: 'https',
-        hostname: 'picsum.photos',
-        port: ''
       }
     ],
   },
