@@ -59,6 +59,9 @@ export default function Home() {
         } else if (e.key === localStorage.getItem('buttonPf')) {
           pJotinha("0");
         }
+          else if (e.key ==="Backspace"){
+          returnCard();
+        }
       });
 
     }
@@ -96,6 +99,25 @@ export default function Home() {
     }
   };
 
+  const returnCard = async() =>{
+    let t = localStorage.getItem("id");
+    let y = parseInt(t)
+    if (y > 2){
+      let stg = t !== null ? JSON.parse(t) : 0;
+      try {
+        if (sheet && stg < rows.length + 2) {
+          const rCell = `E${stg}`;
+          const cell = sheet.getCellByA1(rCell);
+          setNum(stg - 1);
+          getUser(stg - 1);
+          alert("Retornou para o usuário anterior")
+          
+        }
+      } catch (e) {
+        console.error("Error: ", e);
+      }
+    }
+  };
 
 
   return (
