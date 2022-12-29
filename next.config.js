@@ -4,7 +4,8 @@ module.exports = {
   basePath: "/das-classificator",
   assetPrefix: "/das-classificator",
   images: {
-
+    loader: 'cloudinary',
+    path: '',
     remotePatterns: [
       {
         protocol: 'https',
