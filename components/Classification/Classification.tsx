@@ -97,7 +97,8 @@ export default function Home() {
   };
 
   const returnCard = async() =>{
-    let t = localStorage.getItem("id");
+    let t = localStorage.getItem("id")
+    if (t){
     let y = parseInt(t)
     if (y > 2){
       let stg = t !== null ? JSON.parse(t) : 0;
@@ -113,7 +114,7 @@ export default function Home() {
       } catch (e) {
         console.error("Error: ", e);
       }
-    }
+    }}
   };
 
 
