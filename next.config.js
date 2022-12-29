@@ -1,8 +1,23 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: false,
-  basePath: "/das-classificator",
-  assetPrefix: "/das-classificator",
+  images: {
+
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+        port: ''
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: ''
+      }
+    ],
+  },
+  // basePath: "/das-classificator",
+  // assetPrefix: "/das-classificator",
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback.fs = false

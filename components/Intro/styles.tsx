@@ -2,11 +2,13 @@ import styled from '@emotion/styled'
 
 export const InicialInput = styled.div({
   display: 'flex',
+  flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '85vw',
+  width: '50vw',
   height: '85vh',
-  margin: '0 auto',
+  margin: '0px auto',
+  paddingRight: '0px',
 
   '& .boxFormat' : {
     display: 'flex',
@@ -17,6 +19,7 @@ export const InicialInput = styled.div({
     borderRadius: '8px',
     border: 'none',
     boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.25)',
+    marginRight: '20px',
 
 
     '& .titleFormat': {
@@ -61,3 +64,11 @@ export const InicialInput = styled.div({
   },
   }
 });
+
+export const Start = styled.div(
+  {
+    width: '100vw',
+    display: 'flex',
+  }
+
+)
