@@ -129,12 +129,7 @@ export default function Home() {
           <ClassificationStyle>
             <div className="boxFormat">
               
-              <img
-                className="profileImg"
-                alt="Imagem do perfil"
-                src={rowData["profile_image_url"].src}
-                width="10%"
-              />
+              <img className="profileImg" src={rowData['profile_image_url']} alt="Profile Image"/>
 
               <div className="icons">
                 <img src={Hashtag.src} alt="Hashtag" />
