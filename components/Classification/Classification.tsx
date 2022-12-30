@@ -129,8 +129,8 @@ export default function Home() {
               <img
                 className="profileImg"
                 alt="Imagem do perfil"
-                src={rowData["profile_image_url"]}
-                width="10%"
+                src={rowData['profile_image_url'].src}
+
               />
 
               <div className="icons">
