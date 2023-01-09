@@ -76,10 +76,13 @@ export function Select(){
         
         if (buttonPf != 'ArrowLeft' || buttonPj != 'ArrowRight'){
             if (buttonPf != buttonPj){
-                localStorage.setItem('buttonPf', buttonPf)  
-                localStorage.setItem('buttonPj', buttonPj)
-                localStorage.setItem('buttonPfName', buttonPf.toUpperCase())
-                localStorage.setItem('buttonPjName', buttonPj.toUpperCase())
+                if (typeof window !== 'undefined') {
+
+                    localStorage.setItem('buttonPf', buttonPf)  
+                    localStorage.setItem('buttonPj', buttonPj)
+                    localStorage.setItem('buttonPfName', buttonPf.toUpperCase())
+                    localStorage.setItem('buttonPjName', buttonPj.toUpperCase())
+                }
             }  
 
             else{
@@ -91,12 +94,18 @@ export function Select(){
     
      if (buttonPf === ''){
         buttonPf = 'ArrowLeft'
-        localStorage.setItem('buttonPfName', 'Seta esquerda')
-     }
-    
+        if (typeof window !== 'undefined') {
+
+            localStorage.setItem('buttonPfName', 'Seta esquerda')
+        }
+    }  
+
      if (buttonPj === ''){
         buttonPf = 'ArrowRight'
-        localStorage.setItem('buttonPjName', 'Seta direita')
+        if (typeof window !== 'undefined') {
+
+            localStorage.setItem('buttonPjName', 'Seta direita')
+        }
 
      }
 
@@ -107,10 +116,13 @@ export function Select(){
 
         buttonPf = ''
         buttonPj = ''
-        localStorage.setItem('buttonPf', buttonPf)  
-        localStorage.setItem('buttonPj', buttonPj)
-        localStorage.setItem('buttonPfName', buttonPf.toUpperCase())
-        localStorage.setItem('buttonPjName', buttonPj.toUpperCase())
+        if (typeof window !== 'undefined') {
+
+            localStorage.setItem('buttonPf', buttonPf)  
+            localStorage.setItem('buttonPj', buttonPj)
+            localStorage.setItem('buttonPfName', buttonPf.toUpperCase())
+            localStorage.setItem('buttonPjName', buttonPj.toUpperCase())
+        }
 
         inputPJ?.setAttribute('value', '')
         inputPF?.setAttribute('value', '')
