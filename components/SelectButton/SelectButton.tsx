@@ -32,7 +32,7 @@ export function Select(){
                   }
                 buttonPf = e.key
 
-            })
+            }, { once: true })
             console.log('criou event listener')
         }
 
@@ -60,7 +60,8 @@ export function Select(){
                   }
                 buttonPj = e.key
 
-            })
+
+            }, { once: true })
             console.log('criou event listener')
         }
 
