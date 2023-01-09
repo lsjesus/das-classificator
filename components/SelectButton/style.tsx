@@ -41,6 +41,7 @@ export const SelectDiv = styled.div({
         borderRadius: '8px',
         border: 'none',
         boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.25)',
+        cursor: 'pointer', 
       },
     
       '& .buttonFormat': {

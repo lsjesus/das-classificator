@@ -175,8 +175,8 @@ export default function Home() {
             </div>
             
             <div id="dicas">
-              <p id="txtEsq" className="txtDica">&lt; Aperte <strong>${localStorage.getItem('buttonPfName')}</strong> para classificar como <strong>PESSOA FÍSICA</strong></p>
-              <p id="txtDir" className="txtDica">Aperte <strong>${localStorage.getItem('buttonPjName')}</strong> para classificar como &gt; <strong>PESSOA JURÍDICA</strong></p>
+              <p id="txtEsq" className="txtDica">&lt; Aperte <strong>{localStorage.getItem('buttonPfName')}</strong> para classificar como <strong>PESSOA FÍSICA</strong></p>
+              <p id="txtDir" className="txtDica">Aperte <strong>{localStorage.getItem('buttonPjName')}</strong> para classificar como &gt; <strong>PESSOA JURÍDICA</strong></p>
             </div>
           </ClassificationStyle>
         </>
