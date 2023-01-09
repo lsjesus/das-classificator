@@ -62,6 +62,10 @@ export const InicialInput = styled.div({
           backgroundColor: '#253731',
         },
   },
+  '& #not-visible': {
+    display: 'none'
+  }
+
   }
 });
 

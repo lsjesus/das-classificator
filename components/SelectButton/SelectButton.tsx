@@ -19,7 +19,7 @@ export function Select(){
         var inputPF = document.querySelector('#buttonPF')
         console.log(buttonPF?.id)
 
-        if (hasEventPF === 0){
+        //if (hasEventPF === 0){
               
             inputPF?.addEventListener('keydown', (e) => {
                 hasEventPF = 1
@@ -34,7 +34,7 @@ export function Select(){
 
             }, { once: true })
             console.log('criou event listener')
-        }
+        //}
 
         hasEventPF = 1
 
@@ -47,7 +47,7 @@ export function Select(){
         var inputPJ = document.querySelector('#buttonPJ')
         console.log(buttonPJ?.id)
 
-        if (hasEventPJ === 0){
+        //if (hasEventPJ === 0){
               
             inputPJ?.addEventListener('keydown', (e) => {
                 hasEventPJ = 1
@@ -63,7 +63,7 @@ export function Select(){
 
             }, { once: true })
             console.log('criou event listener')
-        }
+        //}
 
         hasEventPJ = 1
 
@@ -77,13 +77,13 @@ export function Select(){
         
         if (buttonPf != 'ArrowLeft' || buttonPj != 'ArrowRight'){
             if (buttonPf != buttonPj){
-                if (typeof window !== 'undefined') {
+                //if (typeof window !== 'undefined') {
 
                     localStorage.setItem('buttonPf', buttonPf)  
                     localStorage.setItem('buttonPj', buttonPj)
                     localStorage.setItem('buttonPfName', buttonPf.toUpperCase())
                     localStorage.setItem('buttonPjName', buttonPj.toUpperCase())
-                }
+                //}
             }  
 
             else{
@@ -91,25 +91,34 @@ export function Select(){
             }
         }
 
-     }
-    
-     if (buttonPf === ''){
-        buttonPf = 'ArrowLeft'
-        if (typeof window !== 'undefined') {
+        const a = document.getElementById('selectButton')
+        if(a){
+            a.style.display = 'none'
+        }
+        const b = document.getElementById('data')
+        if(b){
+        b.style.width = '85vw'
+        b.style.paddingLeft = '250px'
+        const c = document.getElementById('not-visible')
+            if(c)
+            c.style.display = 'block'
+        }
 
+    }
+    
+    if (typeof window !== 'undefined'){
+        if (localStorage.getItem('buttonPF') === ''){
+            localStorage.setItem('buttonPF', 'ArrowLeft')
             localStorage.setItem('buttonPfName', 'Seta esquerda')
         }
-    }  
+    }
 
-     if (buttonPj === ''){
-        buttonPf = 'ArrowRight'
-        if (typeof window !== 'undefined') {
-
+    if (typeof window !== 'undefined'){
+        if (localStorage.getItem('buttonPJ') === ''){
+            localStorage.setItem('buttonPJ', 'ArrowRight')
             localStorage.setItem('buttonPjName', 'Seta direita')
         }
-
-     }
-
+    }
 
      const limparButton = async () =>{
         var inputPJ = document.querySelector('#buttonPJ')
